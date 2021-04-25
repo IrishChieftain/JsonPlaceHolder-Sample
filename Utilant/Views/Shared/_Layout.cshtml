@@ -3,37 +3,77 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>Utilant - @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/simple-line-icons.css" />
+    <link rel="stylesheet" href="~/Content/main.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div id="ui" class="ui">
+        <header id="header" class="ui-header ui-header--dark text-white">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="~/Home" class="navbar-brand">
+                    UTILANT - Albums
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
+
+            <div class="navbar-collapse nav-responsive-disabled">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>
+                        <a class="toggle-btn" data-toggle="ui-nav" href="">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p style="padding-top:10px;padding-right:15px;">Anthony Grace</p></li>
                 </ul>
             </div>
+        </header>
+
+        <aside id="aside" class="ui-aside">
+            <ul class="nav" ui-nav>
+                <li class="nav-head" style="padding-top:3px;">
+                    &nbsp;
+                </li>
+
+                <li>
+                    <a href=""><i class="fa fa-globe"></i><span>Navigation</span><i class="fa fa-angle-right pull-right"></i></a>
+                    <ul class="nav nav-sub">
+                        <li><a href='@Url.Action("Index", "Home")'><span>Home</span></a></li>
+                        <li><a href='@Url.Action("GetAlbums", "Albums")'><span>Albums</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <div id="content" class="ui-content">
+            <div class="ui-content-body">
+                <div class="ui-container">
+                    <div class="row">
+
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer" class="ui-footer dark-footer">
+            @DateTime.Now.Year &copy; Utilant
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+
+
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/autosize.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/init-validation.js"></script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

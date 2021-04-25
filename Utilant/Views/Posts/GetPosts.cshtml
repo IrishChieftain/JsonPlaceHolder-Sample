@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Utilant.Models.PostModel>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <header class="panel-heading">
+                    Posts
+                </header>
+                <div>
+                    <ul class="Notification-list list-group">
+                        @foreach (var item in Model)
+                        {
+                            <li class="Notification list-group-item">
+                                <div class="Notification__highlight">
+                                    <p class="Notification__highlight-excerpt">
+                                        <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+                                    </p>
+                                    <p class="Notification__highlight-time">
+                                        @Html.DisplayFor(modelItem => item.Body)
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            @Html.ActionLink("Back to Albums", "GetAlbums", "Albums", null, null)
+        </div>
+        
+        
+    </div>
+</div>
+

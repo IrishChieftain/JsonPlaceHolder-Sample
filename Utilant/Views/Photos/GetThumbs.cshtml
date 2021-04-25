@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Utilant.Models.AlbumViewModel>
+
+@{
+    ViewBag.Title = "Albums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="panel">
+        <header class="panel-heading">
+            Album Thumbnails
+        </header>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    @foreach (var item in Model)
+                    {
+                        <div class="thumbnail">
+                            <img src="@Html.Raw(item.ThumbnailUrl)" alt="@Html.Raw(item.ThumbnailUrl)" style="margin-top:12px;" />
+                            <div class="caption">
+                                <h4 style="text-align:center;">@Html.Raw(item.Title)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.ActionLink("Back to Albums", "GetAlbums", "Albums", null, null)
+</div>
