@@ -110,7 +110,7 @@ namespace Utilant.Models
 
                                         StringBuilder sb = new StringBuilder();
                                         sb.Append(", ");
-                                        sb.Append(users[i].Address.Suite).ToString();
+                                        sb.Append(users[i].Address.Suite);
                                         sb.Append(", ");
                                         sb.Append(users[i].Address.City);
                                         sb.Append(", ");
