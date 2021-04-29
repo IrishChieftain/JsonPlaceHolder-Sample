@@ -109,6 +109,7 @@ namespace Utilant.Models
                                         phone = users[i].Phone;
 
                                         StringBuilder sb = new StringBuilder();
+                                        sb.Append(users[i].Address.Street);
                                         sb.Append(", ");
                                         sb.Append(users[i].Address.Suite);
                                         sb.Append(", ");
