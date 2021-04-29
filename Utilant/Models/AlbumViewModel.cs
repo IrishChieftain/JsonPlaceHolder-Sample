@@ -8,6 +8,7 @@ using System.Web;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Utilant.Models
 {
@@ -73,6 +74,7 @@ namespace Utilant.Models
                     string photosResponseString = photosResponseContent.ReadAsStringAsync().Result;
                     photos = JsonConvert.DeserializeObject<List<PhotoModel>>(photosResponseString);
 
+                    // https://gist.github.com/ctrl-alt-d/f3bc222ea54c7e9a3c4c9acfb7fffa5d
                     // LINQ version - returning 5,000 records. This is obviously wrong because if
                     // we only return the first thumbnail of each album, we should end up with 100 records.
                     // Time permitting, I would revise this query to do that.
@@ -105,7 +107,16 @@ namespace Utilant.Models
                                         name = users[i].Name;
                                         email = users[i].Email;
                                         phone = users[i].Phone;
-                                        address = users[i].Address.Street + ", " + users[i].Address.Suite + ", " + users[i].Address.City + ", " + users[i].Address.Zipcode;
+
+                                        StringBuilder sb = new StringBuilder();
+                                        sb.Append(", ");
+                                        sb.Append(users[i].Address.Suite).ToString();
+                                        sb.Append(", ");
+                                        sb.Append(users[i].Address.City);
+                                        sb.Append(", ");
+                                        sb.Append(users[i].Address.Zipcode);
+                                        address = sb.ToString();
+
                                         userName = users[i].Username;
 
                                         albumVM = new AlbumViewModel
@@ -218,6 +229,7 @@ namespace Utilant.Models
 
         public static UserViewModel GetUser(string email)
         {
+            // https://github.com/asadikhan/MVC-Razor/blob/master/WebApplication-Razor/Models/UserModel.cs
             UserViewModel userVM = new UserViewModel();
             List<UserViewModel> usersList = new List<UserViewModel>();           
 
